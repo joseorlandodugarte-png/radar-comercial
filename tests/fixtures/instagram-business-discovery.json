@@ -1,0 +1,41 @@
+{
+  "business_discovery": {
+    "id": "17841400000000000",
+    "username": "fixture.cafe",
+    "biography": "Café de especialidad en Mérida ☕ Promo 2x1 los martes",
+    "website": "https://example.org",
+    "followers_count": 2000,
+    "media_count": 150,
+    "media": {
+      "data": [
+        {
+          "timestamp": "2026-10-15T14:00:00+0000",
+          "media_type": "VIDEO",
+          "media_product_type": "REELS",
+          "like_count": 80,
+          "comments_count": 10
+        },
+        {
+          "timestamp": "2026-10-10T14:00:00+0000",
+          "media_type": "IMAGE",
+          "media_product_type": "FEED",
+          "like_count": 30,
+          "comments_count": 0
+        },
+        {
+          "timestamp": "2026-10-01T14:00:00+0000",
+          "media_type": "CAROUSEL_ALBUM",
+          "media_product_type": "FEED"
+        },
+        {
+          "timestamp": "2026-08-01T14:00:00+0000",
+          "media_type": "VIDEO",
+          "media_product_type": "REELS",
+          "like_count": 20,
+          "comments_count": 0
+        }
+      ]
+    }
+  },
+  "id": "17841499999999999"
+}

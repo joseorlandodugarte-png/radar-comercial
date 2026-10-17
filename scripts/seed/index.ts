@@ -268,14 +268,12 @@ async function seedDemoBusinesses(meridaId: number) {
       })
       .returning();
     if (lead)
-      await db
-        .insert(interactions)
-        .values({
-          leadId: lead.id,
-          kind: "whatsapp",
-          body: note,
-          occurredAt: new Date(now.getTime() - DAY),
-        });
+      await db.insert(interactions).values({
+        leadId: lead.id,
+        kind: "whatsapp",
+        body: note,
+        occurredAt: new Date(now.getTime() - DAY),
+      });
   }
 
   console.log(`✔ ${created.length} negocios demo (source = "seed") con métricas e historial`);

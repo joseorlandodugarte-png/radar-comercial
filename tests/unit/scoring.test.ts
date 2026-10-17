@@ -347,3 +347,32 @@ describe("scoreBusiness", () => {
     expect(r.services.map((s) => s.service)).toContain("video");
   });
 });
+
+describe("opportunity with little data", () => {
+  it("treats unknown strength as neutral so data-poor businesses do not top the ranking", () => {
+    const base = {
+      categoryRootSlug: "hospedaje",
+      servesFood: false,
+      instagram: null,
+      facebook: null,
+      tiktok: null,
+      hasContact: false,
+      hasDigitalMenu: null,
+      tagSlugs: [],
+      social: null,
+      categoryFollowersMedian: null,
+      now: new Date("2026-10-17T12:00:00Z"),
+    } satisfies Omit<ScoringInput, "review" | "onMainRoad">;
+    const unknown = computeOpportunity({ ...base, review: null, onMainRoad: null }, null);
+    const proven = computeOpportunity(
+      {
+        ...base,
+        review: { source: "google_places", capturedAt: new Date(), rating: 4.7, reviewCount: 300 },
+        onMainRoad: true,
+      },
+      null,
+    );
+    expect(unknown.score).toBeLessThan(80);
+    expect(proven.score).toBeGreaterThan(unknown.score!);
+  });
+});

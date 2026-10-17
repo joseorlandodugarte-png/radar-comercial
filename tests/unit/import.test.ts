@@ -5,7 +5,8 @@ import { findDuplicate, nameSimilarity } from "@/lib/import/dedupe";
 
 describe("CSV import", () => {
   it("accepts Spanish or English headers, ; separators and accents", () => {
-    const csv = "﻿Nombre;Categoría;Municipio;Lat;Lng;Teléfono;Instagram;Vía principal\n" +
+    const csv =
+      "﻿Nombre;Categoría;Municipio;Lat;Lng;Teléfono;Instagram;Vía principal\n" +
       "Café La Neblina;cafes;Libertador;8,59;-71,15;0414-1234567;https://instagram.com/cafe.neblina;sí\n";
     const rows = validateRecords(parseCsv(csv));
     expect(rows).toHaveLength(1);
@@ -48,16 +49,33 @@ describe("CSV import", () => {
 
 describe("duplicate detection", () => {
   const existing = [
-    { id: 1, name: "Restaurante El Trapiche", instagram: "eltrapiche", phone: "0274-2441234", location: { lat: 8.5467, lng: -71.24 } },
-    { id: 2, name: "Café La Neblina", googlePlaceId: "ChIJ1", location: { lat: 8.59, lng: -71.15 } },
+    {
+      id: 1,
+      name: "Restaurante El Trapiche",
+      instagram: "eltrapiche",
+      phone: "0274-2441234",
+      location: { lat: 8.5467, lng: -71.24 },
+    },
+    {
+      id: 2,
+      name: "Café La Neblina",
+      googlePlaceId: "ChIJ1",
+      location: { lat: 8.59, lng: -71.15 },
+    },
   ];
 
   it("matches by Instagram regardless of case", () => {
-    expect(findDuplicate({ name: "Otro", instagram: "ElTrapiche" }, existing)).toMatchObject({ id: 1, confidence: "exact" });
+    expect(findDuplicate({ name: "Otro", instagram: "ElTrapiche" }, existing)).toMatchObject({
+      id: 1,
+      confidence: "exact",
+    });
   });
 
   it("matches by normalised phone", () => {
-    expect(findDuplicate({ name: "Otro", whatsapp: "+58 274 244 1234" }, existing)).toMatchObject({ id: 1, confidence: "exact" });
+    expect(findDuplicate({ name: "Otro", whatsapp: "+58 274 244 1234" }, existing)).toMatchObject({
+      id: 1,
+      confidence: "exact",
+    });
   });
 
   it("matches by Google place id", () => {
@@ -65,15 +83,24 @@ describe("duplicate detection", () => {
   });
 
   it("matches a similar name within 100 m", () => {
-    expect(findDuplicate({ name: "El Trapiche", location: { lat: 8.5468, lng: -71.2401 } }, existing)).toMatchObject({
+    expect(
+      findDuplicate({ name: "El Trapiche", location: { lat: 8.5468, lng: -71.2401 } }, existing),
+    ).toMatchObject({
       id: 1,
       confidence: "likely",
     });
   });
 
   it("does not match the same name far away, or a different name nearby", () => {
-    expect(findDuplicate({ name: "El Trapiche", location: { lat: 8.6, lng: -71.3 } }, existing)).toBeNull();
-    expect(findDuplicate({ name: "Ferretería Central", location: { lat: 8.5467, lng: -71.24 } }, existing)).toBeNull();
+    expect(
+      findDuplicate({ name: "El Trapiche", location: { lat: 8.6, lng: -71.3 } }, existing),
+    ).toBeNull();
+    expect(
+      findDuplicate(
+        { name: "Ferretería Central", location: { lat: 8.5467, lng: -71.24 } },
+        existing,
+      ),
+    ).toBeNull();
   });
 
   it("name similarity ignores generic words and accents", () => {

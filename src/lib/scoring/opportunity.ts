@@ -85,6 +85,12 @@ export function computeOpportunity(
   // Strength always has at least the category factor, so require no minimum coverage here;
   // the coverage is kept in the result so the UI can flag partial data.
   const strength = combineFactors(businessStrengthFactors(input, cfg), 0);
+  // Unknown strength factors count as neutral (50) rather than being ignored, so a business
+  // with almost no data cannot outrank one with great reviews just because it is a café.
+  const strengthScore =
+    strength.score === null
+      ? null
+      : Math.round(strength.score * strength.coverage + 50 * (1 - strength.coverage));
 
   const noSocial = !hasAnySocial(input);
   const noInstagram = !input.instagram;
@@ -135,7 +141,7 @@ export function computeOpportunity(
     ...strength.factors.map((f) => ({ ...f, key: `strength.${f.key}` })),
   ];
 
-  if (gap === null || strength.score === null) {
+  if (gap === null || strengthScore === null) {
     return {
       score: null,
       coverage: strength.coverage,
@@ -145,7 +151,7 @@ export function computeOpportunity(
   }
 
   return {
-    score: Math.round(strength.score * o.strengthWeight + gap * o.gapWeight),
+    score: Math.round(strengthScore * o.strengthWeight + gap * o.gapWeight),
     coverage: strength.coverage,
     factors,
     note:

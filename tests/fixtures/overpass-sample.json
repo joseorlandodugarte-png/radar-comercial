@@ -1,0 +1,60 @@
+{
+  "version": 0.6,
+  "generator": "Fixture for tests — fictional elements, not real OSM data",
+  "elements": [
+    {
+      "type": "node",
+      "id": 9000000001,
+      "lat": 8.5931,
+      "lon": -71.1452,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Fixture Restaurante Andino",
+        "phone": "+58 274 000 0001",
+        "contact:instagram": "https://www.instagram.com/fixture.andino/",
+        "addr:street": "Avenida 3",
+        "addr:housenumber": "20-45",
+        "addr:suburb": "Centro"
+      }
+    },
+    {
+      "type": "way",
+      "id": 9000000002,
+      "center": { "lat": 8.6012, "lon": -71.1391 },
+      "tags": { "shop": "bakery", "name": "Fixture Panadería" }
+    },
+    {
+      "type": "node",
+      "id": 9000000003,
+      "lat": 8.58,
+      "lon": -71.16,
+      "tags": { "shop": "hairdresser", "hairdresser": "barber", "name": "Fixture Barber" }
+    },
+    {
+      "type": "node",
+      "id": 9000000004,
+      "lat": 8.58,
+      "lon": -71.16,
+      "tags": { "amenity": "bench" }
+    },
+    { "type": "node", "id": 9000000005, "lat": 8.58, "lon": -71.16, "tags": { "amenity": "cafe" } },
+    {
+      "type": "node",
+      "id": 9000000006,
+      "lat": 8.5467,
+      "lon": -71.2401,
+      "tags": {
+        "tourism": "guest_house",
+        "name": "Fixture Posada",
+        "website": "https://example.org"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9000000001,
+      "lat": 8.5931,
+      "lon": -71.1452,
+      "tags": { "amenity": "restaurant", "name": "Fixture Restaurante Andino" }
+    }
+  ]
+}
