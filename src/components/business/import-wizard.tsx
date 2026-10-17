@@ -68,7 +68,7 @@ export function ImportWizard() {
     <div className="flex flex-col gap-5">
       <label
         className={cn(
-          "hover:bg-accent/50 flex cursor-pointer flex-col items-center gap-3 rounded-2xl border-2 border-dashed p-8 text-center transition-colors",
+          "hover:bg-accent/50 flex cursor-pointer flex-col items-center gap-3 rounded-xl border-2 border-dashed p-8 text-center transition-colors",
           pending && "pointer-events-none opacity-60",
         )}
       >
@@ -131,7 +131,7 @@ export function ImportWizard() {
           </div>
 
           {dupes.length > 0 && (
-            <section className="bg-card rounded-2xl border">
+            <section className="bg-card hud-frame rounded-xl border backdrop-blur-sm">
               <h3 className="border-b p-3 font-medium">Posibles duplicados: decide qué hacer</h3>
               <ul className="divide-y">
                 {dupes.map((r) => (
@@ -186,7 +186,7 @@ export function ImportWizard() {
           )}
 
           {invalid.length > 0 && (
-            <section className="bg-card rounded-2xl border">
+            <section className="bg-card hud-frame rounded-xl border backdrop-blur-sm">
               <h3 className="flex items-center gap-2 border-b p-3 font-medium">
                 <TriangleAlert className="size-4 text-amber-600" /> Filas con errores (no se
                 importan)

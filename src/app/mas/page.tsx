@@ -60,7 +60,7 @@ export default async function MorePage() {
   return (
     <>
       <PageHeader title="Más" />
-      <ul className="bg-card divide-y rounded-2xl border">
+      <ul className="bg-card hud-frame divide-y rounded-xl border backdrop-blur-sm">
         {items.map((i) => (
           <li key={i.href}>
             {i.download ? (

@@ -75,7 +75,7 @@ export function Kanban({ items }: { items: PipelineItem[] }) {
               aria-label={LEAD_STAGE_LABEL[stage]}
               data-testid={`column-${stage}`}
               className={cn(
-                "border-t-primary/60 bg-muted/40 flex w-[82vw] max-w-[300px] shrink-0 snap-center flex-col gap-2 rounded-2xl border border-t-4 p-2 sm:w-72",
+                "border-t-primary/60 bg-muted/40 flex w-[82vw] max-w-[300px] shrink-0 snap-center flex-col gap-2 rounded-xl border border-t-4 p-2 sm:w-72",
                 COLUMN_ACCENT[stage],
               )}
               onDragOver={(e) => e.preventDefault()}
@@ -143,9 +143,7 @@ function LeadCard({ item, onMove }: { item: PipelineItem; onMove: (stage: LeadSt
           </span>
         </Link>
         {item.opportunity !== null && (
-          <span className="text-primary text-sm font-semibold tabular-nums">
-            {item.opportunity}
-          </span>
+          <span className="font-mono text-sm font-semibold tabular-nums">{item.opportunity}</span>
         )}
       </div>
       {item.nextActionAt && (

@@ -11,7 +11,7 @@ import { whatsappLinkFor } from "./quick-actions";
 /** Ranked, compact rows with a direct WhatsApp button: the "3 taps" path. */
 export function OpportunityList({ items }: { items: BusinessListItem[] }) {
   return (
-    <ol className="bg-card divide-y rounded-2xl border">
+    <ol className="bg-card hud-frame divide-y rounded-xl border backdrop-blur-sm">
       {items.map((b, i) => {
         const wa = whatsappLinkFor(b);
         return (
@@ -35,7 +35,7 @@ export function OpportunityList({ items }: { items: BusinessListItem[] }) {
               </span>
             </Link>
             <span className="flex flex-col items-end">
-              <span className="text-primary text-lg leading-none font-semibold tabular-nums">
+              <span className="font-mono text-lg leading-none font-semibold tabular-nums">
                 {b.opportunity}
               </span>
               <span className="text-muted-foreground text-[10px]">oportunidad</span>

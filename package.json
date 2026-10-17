@@ -17,6 +17,7 @@
     "db:migrate": "tsx --env-file-if-exists=.env scripts/db/migrate.ts",
     "db:seed": "tsx --env-file-if-exists=.env scripts/seed/index.ts",
     "db:setup": "pnpm db:migrate && pnpm db:seed",
+    "db:demo:remove": "tsx --env-file-if-exists=.env scripts/remove-demo.ts",
     "scores:recompute": "tsx --env-file-if-exists=.env scripts/recompute-scores.ts",
     "ingest:osm": "tsx --env-file-if-exists=.env scripts/ingest/osm-overpass.ts",
     "ingest:google": "tsx --env-file-if-exists=.env scripts/ingest/google-places.ts",

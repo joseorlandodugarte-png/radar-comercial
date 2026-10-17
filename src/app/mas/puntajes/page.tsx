@@ -93,7 +93,7 @@ export default function ScoringPage() {
 
 function Block({ title, children, id }: { title: string; children: React.ReactNode; id?: string }) {
   return (
-    <section id={id} className="bg-card flex flex-col gap-3 rounded-2xl border p-5">
+    <section id={id} className="bg-card flex flex-col gap-3 rounded-xl border p-5">
       <h2 className="text-base font-semibold">{title}</h2>
       {children}
     </section>

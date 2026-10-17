@@ -112,14 +112,12 @@ async function main() {
         if (mapped) {
           const { igUserId: discoveredId, ...metrics } = mapped;
           await db.transaction(async (tx) => {
-            await tx
-              .insert(socialSnapshots)
-              .values({
-                businessId: t.id,
-                platform: "instagram",
-                source: "instagram_graph",
-                ...metrics,
-              });
+            await tx.insert(socialSnapshots).values({
+              businessId: t.id,
+              platform: "instagram",
+              source: "instagram_graph",
+              ...metrics,
+            });
             await tx
               .update(businesses)
               .set({ igUserId: discoveredId })

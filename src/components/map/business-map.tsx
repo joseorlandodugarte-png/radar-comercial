@@ -3,14 +3,16 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import type { FeatureCollection } from "geojson";
-import type { GeoJSONSource, Map as MapLibreMap, StyleSpecification } from "maplibre-gl";
+import type { GeoJSONSource, Map as MapLibreMap } from "maplibre-gl";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 
 import { TrafficLightBadge } from "@/components/score-badges";
 import type { TrafficLight } from "@/db/schema";
 import { TRAFFIC_LIGHT_HEX, TRAFFIC_LIGHT_LABEL } from "@/lib/labels";
+import { loadMapStyle, MAP_PALETTE } from "@/lib/map/style";
 import { cn } from "@/lib/utils";
 
 export type MapPoint = {
@@ -22,22 +24,6 @@ export type MapPoint = {
   opportunity: number | null;
   category: string;
   sector: string | null;
-};
-
-const OSM_STYLE: StyleSpecification = {
-  version: 8,
-  glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-  sources: {
-    osm: {
-      type: "raster",
-      tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
-      tileSize: 256,
-      maxzoom: 19,
-      attribution:
-        '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-    },
-  },
-  layers: [{ id: "osm", type: "raster", source: "osm" }],
 };
 
 const count = (light: string) => ["+", ["case", ["==", ["get", "light"], light], 1, 0]];
@@ -58,16 +44,22 @@ export function BusinessMap({
   const [selected, setSelected] = useState<MapPoint | null>(null);
   const pointsRef = useRef(points);
   pointsRef.current = points;
+  const { resolvedTheme } = useTheme();
+  const theme = resolvedTheme === "dark" ? "dark" : "light";
 
   useEffect(() => {
     let cancelled = false;
     let map: MapLibreMap | undefined;
     (async () => {
-      const maplibre = await import("maplibre-gl");
+      const [maplibre, { style, font }] = await Promise.all([
+        import("maplibre-gl"),
+        loadMapStyle(theme),
+      ]);
       if (cancelled || !container.current) return;
+      const palette = MAP_PALETTE[theme];
       map = new maplibre.Map({
         container: container.current,
-        style: OSM_STYLE,
+        style,
         center: [center.lng, center.lat],
         zoom,
         attributionControl: { compact: true },
@@ -125,7 +117,7 @@ export function BusinessMap({
             ],
             "circle-radius": ["step", ["get", "point_count"], 16, 10, 22, 50, 28],
             "circle-stroke-width": 3,
-            "circle-stroke-color": "rgba(255,255,255,0.85)",
+            "circle-stroke-color": palette.markerStroke,
           },
         });
         map.addLayer({
@@ -136,7 +128,7 @@ export function BusinessMap({
           layout: {
             "text-field": ["get", "point_count_abbreviated"],
             "text-size": 13,
-            "text-font": ["Open Sans Semibold"],
+            "text-font": font,
           },
           paint: { "text-color": "#ffffff" },
         });
@@ -161,7 +153,7 @@ export function BusinessMap({
             ],
             "circle-radius": 9,
             "circle-stroke-width": 2.5,
-            "circle-stroke-color": "#ffffff",
+            "circle-stroke-color": palette.markerStroke,
           },
         });
 
@@ -188,9 +180,9 @@ export function BusinessMap({
       map?.remove();
       mapRef.current = null;
     };
-    // The map is created once; data updates are handled below.
+    // The map is rebuilt only when the theme changes; data updates are handled below.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [theme]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -202,7 +194,7 @@ export function BusinessMap({
   }, [points]);
 
   return (
-    <div className={cn("relative overflow-hidden rounded-2xl border", className)}>
+    <div className={cn("hud-frame relative overflow-hidden rounded-xl border", className)}>
       <div ref={container} className="h-full w-full" data-testid="business-map" />
       <Legend />
       {points.length === 0 && (
@@ -211,7 +203,7 @@ export function BusinessMap({
         </div>
       )}
       {selected && (
-        <div className="bg-background absolute inset-x-3 bottom-3 rounded-2xl border p-4 shadow-lg md:right-auto md:w-80">
+        <div className="bg-background absolute inset-x-3 bottom-3 rounded-xl border p-4 shadow-lg md:right-auto md:w-80">
           <button
             type="button"
             onClick={() => setSelected(null)}
@@ -245,7 +237,7 @@ export function BusinessMap({
 
 function Legend() {
   return (
-    <div className="bg-background/90 absolute top-3 left-3 flex flex-wrap gap-x-3 gap-y-1 rounded-lg px-2.5 py-1.5 text-[11px] shadow-sm">
+    <div className="bg-background/85 absolute top-3 left-3 flex flex-wrap gap-x-3 gap-y-1 rounded-lg border px-2.5 py-1.5 font-mono text-[10.5px] tracking-wide uppercase backdrop-blur">
       {(["red", "yellow", "green", "no_social"] as const).map((l) => (
         <span key={l} className="flex items-center gap-1">
           <span className="size-2.5 rounded-full" style={{ background: TRAFFIC_LIGHT_HEX[l] }} />

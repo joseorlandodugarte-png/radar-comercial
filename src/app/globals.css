@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-code);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -35,57 +35,69 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/*
+ * "Radar" theme: warm cream paper with ink-black details (light) and an ink
+ * console with cream text (dark). Traffic-light colours stay saturated so they
+ * read as signals on top of the monochrome UI.
+ */
 :root {
-  --radius: 0.75rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.2 0.01 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.01 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.01 260);
-  --primary: oklch(0.62 0.21 15);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.005 260);
-  --secondary-foreground: oklch(0.25 0.01 260);
-  --muted: oklch(0.965 0.004 260);
-  --muted-foreground: oklch(0.5 0.015 260);
-  --accent: oklch(0.955 0.01 15);
-  --accent-foreground: oklch(0.3 0.05 15);
-  --destructive: oklch(0.58 0.22 27);
-  --border: oklch(0.91 0.005 260);
-  --input: oklch(0.9 0.005 260);
-  --ring: oklch(0.62 0.21 15);
-  --light-green: oklch(0.65 0.16 150);
-  --light-yellow: oklch(0.8 0.16 85);
-  --light-red: oklch(0.6 0.22 25);
-  --light-none: oklch(0.55 0.01 260);
-  --whatsapp: oklch(0.68 0.17 150);
+  --radius: 0.625rem;
+  --background: oklch(0.962 0.022 85);
+  --foreground: oklch(0.19 0.012 70);
+  --card: oklch(0.982 0.014 85 / 82%);
+  --card-foreground: oklch(0.19 0.012 70);
+  --popover: oklch(0.982 0.014 85);
+  --popover-foreground: oklch(0.19 0.012 70);
+  --primary: oklch(0.19 0.012 70);
+  --primary-foreground: oklch(0.97 0.02 85);
+  --secondary: oklch(0.925 0.024 82);
+  --secondary-foreground: oklch(0.24 0.012 70);
+  --muted: oklch(0.935 0.022 83);
+  --muted-foreground: oklch(0.47 0.02 70);
+  --accent: oklch(0.915 0.028 82);
+  --accent-foreground: oklch(0.19 0.012 70);
+  --destructive: oklch(0.56 0.21 27);
+  --border: oklch(0.19 0.012 70 / 14%);
+  --input: oklch(0.19 0.012 70 / 18%);
+  --ring: oklch(0.19 0.012 70 / 60%);
+  --light-green: oklch(0.6 0.15 152);
+  --light-yellow: oklch(0.76 0.16 78);
+  --light-red: oklch(0.58 0.22 27);
+  --light-none: oklch(0.52 0.015 70);
+  --whatsapp: oklch(0.64 0.16 150);
+  /* Decorative layer: grid lines and particles. */
+  --grid-line: oklch(0.19 0.012 70 / 5.5%);
+  --particle: 26, 23, 19;
+  --glow: oklch(0.19 0.012 70 / 8%);
 }
 
 .dark {
-  --background: oklch(0.16 0.005 260);
-  --foreground: oklch(0.96 0.003 260);
-  --card: oklch(0.2 0.006 260);
-  --card-foreground: oklch(0.96 0.003 260);
-  --popover: oklch(0.2 0.006 260);
-  --popover-foreground: oklch(0.96 0.003 260);
-  --primary: oklch(0.68 0.19 15);
-  --primary-foreground: oklch(0.15 0 0);
-  --secondary: oklch(0.26 0.006 260);
-  --secondary-foreground: oklch(0.96 0.003 260);
-  --muted: oklch(0.25 0.006 260);
-  --muted-foreground: oklch(0.7 0.01 260);
-  --accent: oklch(0.28 0.03 15);
-  --accent-foreground: oklch(0.95 0.01 15);
-  --destructive: oklch(0.65 0.2 25);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.68 0.19 15);
+  --background: oklch(0.155 0.008 70);
+  --foreground: oklch(0.94 0.025 85);
+  --card: oklch(0.2 0.009 70 / 82%);
+  --card-foreground: oklch(0.94 0.025 85);
+  --popover: oklch(0.2 0.009 70);
+  --popover-foreground: oklch(0.94 0.025 85);
+  --primary: oklch(0.93 0.035 85);
+  --primary-foreground: oklch(0.17 0.008 70);
+  --secondary: oklch(0.25 0.01 70);
+  --secondary-foreground: oklch(0.94 0.025 85);
+  --muted: oklch(0.24 0.01 70);
+  --muted-foreground: oklch(0.7 0.02 80);
+  --accent: oklch(0.27 0.012 70);
+  --accent-foreground: oklch(0.94 0.025 85);
+  --destructive: oklch(0.64 0.2 25);
+  --border: oklch(0.94 0.025 85 / 12%);
+  --input: oklch(0.94 0.025 85 / 16%);
+  --ring: oklch(0.94 0.025 85 / 55%);
   --light-green: oklch(0.7 0.15 150);
   --light-yellow: oklch(0.82 0.15 85);
   --light-red: oklch(0.66 0.2 25);
-  --light-none: oklch(0.62 0.01 260);
+  --light-none: oklch(0.62 0.015 75);
   --whatsapp: oklch(0.7 0.16 150);
+  --grid-line: oklch(0.94 0.025 85 / 5%);
+  --particle: 240, 230, 210;
+  --glow: oklch(0.94 0.025 85 / 7%);
 }
 
 @layer base {
@@ -98,11 +110,154 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+  /* Tabular figures everywhere numbers are compared. */
+  .tabular-nums,
+  [data-slot="metric"] {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ---------- Futuristic details ---------- */
+
+/* Blueprint grid behind everything, fading out towards the edges. */
+.hud-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 40%, transparent 100%);
+}
+
+/* Corner brackets, like a viewfinder. Put on any positioned element. */
+.hud-frame {
+  position: relative;
+}
+.hud-frame::before,
+.hud-frame::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  border-color: var(--foreground);
+  opacity: 0.55;
+}
+.hud-frame::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+  border-top-left-radius: 4px;
+}
+.hud-frame::after {
+  right: -1px;
+  bottom: -1px;
+  border-right: 1.5px solid;
+  border-bottom: 1.5px solid;
+  border-bottom-right-radius: 4px;
+}
+
+/* Holographic sheen that sweeps across on hover. */
+.holo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.holo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    oklch(0.85 0.06 200 / 18%) 45%,
+    oklch(0.88 0.07 320 / 16%) 52%,
+    oklch(0.92 0.08 90 / 14%) 58%,
+    transparent 68%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+}
+@media (hover: hover) {
+  .holo:hover::after {
+    transform: translateX(120%);
+  }
+}
+
+/* Small uppercase monospace label: "SECTOR · 08". */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* A thin line that scans across the header. */
+.scanline {
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, var(--foreground), transparent);
+  opacity: 0.5;
+  animation: scan 6s linear infinite;
+}
+@keyframes scan {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(400%);
+  }
+}
+
+/* Radar sweep on the logo. */
+.radar-ping {
+  animation: radar-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes radar-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline::after,
+  .radar-ping {
+    animation: none;
+  }
+  .holo::after {
+    transition: none;
+  }
 }
 
 /* MapLibre popups follow the app theme */
 .maplibregl-popup-content {
   @apply bg-popover text-popover-foreground rounded-xl p-0 shadow-lg;
+}
+.maplibregl-ctrl-group {
+  @apply bg-popover! border-border! rounded-lg! border shadow-none!;
+}
+.dark .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: invert(1);
+}
+.maplibregl-ctrl-attrib {
+  @apply bg-background/80! text-muted-foreground! font-mono text-[10px]!;
 }
 .maplibregl-popup-tip {
   display: none;

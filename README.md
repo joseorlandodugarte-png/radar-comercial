@@ -27,7 +27,7 @@ pnpm db:setup && pnpm dev
 
 Abre <http://localhost:3000>. Para verla en tu teléfono, conéctalo a la misma red Wi-Fi y entra a `http://IP-DE-TU-PC:3000`.
 
-Los 60 negocios de ejemplo son **ficticios** y llevan la etiqueta **DEMO**: sirven para probar la app sin claves. Para cargar negocios reales, sigue [docs/api-keys.md](docs/api-keys.md).
+Los 60 negocios de ejemplo son **ficticios** y llevan la etiqueta **DEMO**: sirven para probar la app sin claves. Para cargar negocios reales, ejecuta `pnpm ingest:osm --boundaries` (no necesita clave) y luego `pnpm db:demo:remove`. Google e Instagram se explican en [docs/api-keys.md](docs/api-keys.md).
 
 ## Qué trae
 
@@ -52,6 +52,7 @@ Los 60 negocios de ejemplo son **ficticios** y llevan la etiqueta **DEMO**: sirv
 | `pnpm dev`                        | App en modo desarrollo                                                         |
 | `pnpm db:setup`                   | Migraciones y datos iniciales (se puede repetir sin duplicar)                  |
 | `pnpm db:seed --reset`            | Vuelve a crear los negocios DEMO                                               |
+| `pnpm db:demo:remove`             | Borra los negocios DEMO y deja solo los reales                                 |
 | `pnpm scores:recompute`           | Recalcula todos los puntajes                                                   |
 | `pnpm ingest:osm --dry-run`       | Muestra qué negocios traería de OpenStreetMap (quita `--dry-run` para guardar) |
 | `pnpm ingest:google --dry-run`    | Reputación desde Google Places (necesita clave)                                |

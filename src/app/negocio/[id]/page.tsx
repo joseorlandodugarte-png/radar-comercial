@@ -91,9 +91,9 @@ export default async function BusinessPage({
         </div>
       )}
 
-      <header className="bg-card flex flex-col gap-4 rounded-2xl border p-4 md:p-5">
+      <header className="bg-card flex flex-col gap-4 rounded-xl border p-4 md:p-5">
         <div className="flex items-start gap-3">
-          <span className="bg-accent text-accent-foreground flex size-14 shrink-0 items-center justify-center rounded-2xl">
+          <span className="bg-accent text-accent-foreground flex size-14 shrink-0 items-center justify-center rounded-xl">
             <CategoryIcon name={b.categoryIcon} className="size-7" />
           </span>
           <div className="min-w-0 flex-1">
@@ -183,7 +183,7 @@ function Section({
   className?: string;
 }) {
   return (
-    <section className={cn("bg-card rounded-2xl border p-4", className)}>
+    <section className={cn("bg-card hud-frame rounded-xl border p-4 backdrop-blur-sm", className)}>
       <h2 className="mb-3 font-semibold">{title}</h2>
       {children}
     </section>

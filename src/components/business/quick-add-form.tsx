@@ -131,7 +131,7 @@ export function QuickAddForm({
       <input type="hidden" name="googlePlaceId" value={placeId} />
       <input type="hidden" name="categoryId" value={categoryId ?? ""} />
 
-      <div className="bg-card grid gap-2 rounded-2xl border p-4">
+      <div className="bg-card grid gap-2 rounded-xl border p-4">
         <Label htmlFor="link" className="flex items-center gap-1.5">
           <Link2 className="size-4" /> Pega el link de Instagram o Google Maps
         </Label>
@@ -192,7 +192,7 @@ export function QuickAddForm({
               className={cn(
                 "flex flex-col items-center gap-1 rounded-xl border p-2.5 text-xs font-medium transition-colors",
                 rootSlug === c.slug
-                  ? "border-primary bg-primary/10 text-primary"
+                  ? "border-primary bg-primary text-primary-foreground"
                   : "hover:bg-accent",
               )}
             >

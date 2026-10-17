@@ -79,8 +79,10 @@ export function ScoreRing({
             cy={size / 2}
             r={r}
             fill="none"
-            stroke="var(--muted)"
+            stroke="var(--foreground)"
+            strokeOpacity={0.18}
             strokeWidth={stroke}
+            strokeDasharray="1.5 3"
           />
           <circle
             cx={size / 2}
@@ -96,7 +98,7 @@ export function ScoreRing({
         </svg>
         <span
           className={cn(
-            "absolute inset-0 flex items-center justify-center font-semibold tabular-nums",
+            "absolute inset-0 flex items-center justify-center font-mono font-semibold tabular-nums",
             size >= 64 ? "text-lg" : "text-xs",
             value === null && "text-muted-foreground text-[10px] font-normal",
           )}
@@ -104,7 +106,9 @@ export function ScoreRing({
           {value ?? "Sin dato"}
         </span>
       </div>
-      <span className="text-muted-foreground text-center text-[11px] leading-tight">{label}</span>
+      <span className="text-muted-foreground text-center font-mono text-[10px] leading-tight tracking-wider uppercase">
+        {label}
+      </span>
     </div>
   );
 }

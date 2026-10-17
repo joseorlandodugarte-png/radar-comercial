@@ -13,9 +13,9 @@ import { whatsappLinkFor } from "./quick-actions";
 export function BusinessCard({ b }: { b: BusinessListItem }) {
   const wa = whatsappLinkFor(b);
   return (
-    <article className="group bg-card relative flex min-w-0 flex-col gap-3 rounded-2xl border p-4 shadow-xs transition-shadow hover:shadow-md">
+    <article className="group bg-card hud-frame holo hover:border-foreground/40 relative flex min-w-0 flex-col gap-3 rounded-xl border p-4 backdrop-blur-sm transition-[border-color,box-shadow] hover:shadow-[0_0_0_4px_var(--glow)]">
       <div className="flex items-start gap-3">
-        <span className="bg-accent text-accent-foreground flex size-11 shrink-0 items-center justify-center rounded-xl">
+        <span className="bg-primary text-primary-foreground flex size-11 shrink-0 items-center justify-center rounded-lg">
           <CategoryIcon name={b.categoryIcon} className="size-5" />
         </span>
         <div className="min-w-0 flex-1">
@@ -39,7 +39,7 @@ export function BusinessCard({ b }: { b: BusinessListItem }) {
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
             <TrafficLightBadge light={b.trafficLight} />
             {b.topService && (
-              <span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-xs font-medium">
+              <span className="border-foreground/25 rounded-full border px-2 py-0.5 font-mono text-[10.5px] font-medium tracking-wide uppercase">
                 {SERVICE_LABEL[b.topService]}
               </span>
             )}

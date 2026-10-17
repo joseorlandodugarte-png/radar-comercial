@@ -79,6 +79,12 @@ async function main() {
       log.info(
         `Consultando OpenStreetMap para ${state.name} (${state.isoCode})${fromFile ? ` desde ${fromFile}` : ""}…`,
       );
+      // Boundaries first, so each business lands in the polygon that contains it
+      // instead of the nearest municipal seat.
+      let boundaries = 0;
+      if (cli.flags.has("boundaries"))
+        boundaries = await loadBoundaries(state.isoCode, state.id, cli.dryRun);
+
       const raw: OverpassResponse = fromFile
         ? JSON.parse(await readFile(fromFile, "utf8"))
         : await overpass(businessesQuery(state.isoCode));
@@ -227,9 +233,6 @@ async function main() {
       let onMainRoad = 0;
       if (!cli.flags.has("no-roads") && !fromFile)
         onMainRoad = await markMainRoads(state.isoCode, state.id, cli.dryRun);
-      let boundaries = 0;
-      if (cli.flags.has("boundaries"))
-        boundaries = await loadBoundaries(state.isoCode, state.id, cli.dryRun);
 
       if (!cli.dryRun && touched.length) {
         await recomputeScores(db, touched);

@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import { AppShell } from "@/components/layout/app-shell";
 import { Providers } from "@/components/providers";
 
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const display = Space_Grotesk({ variable: "--font-display", subsets: ["latin"] });
+const code = JetBrains_Mono({ variable: "--font-code", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: { default: "Radar Comercial Venezuela", template: "%s · Radar Comercial" },
@@ -19,15 +19,15 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#16171b" },
+    { media: "(prefers-color-scheme: light)", color: "#f5efe2" },
+    { media: "(prefers-color-scheme: dark)", color: "#1a1714" },
   ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es-VE" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
+      <body className={`${display.variable} ${code.variable} font-sans`}>
         <Providers>
           <AppShell>{children}</AppShell>
         </Providers>

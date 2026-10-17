@@ -185,6 +185,15 @@ async function seedDemoBusinesses(meridaId: number) {
     console.log("• Los negocios demo ya existen (usa --reset para recrearlos)");
     return;
   }
+  // Once real businesses are loaded, the demo is only created on request.
+  const [real] = await db
+    .select({ n: sql<number>`count(*)::int` })
+    .from(businesses)
+    .where(sql`${businesses.source} <> 'seed'`);
+  if ((real?.n ?? 0) > 0 && !reset) {
+    console.log("• Hay negocios reales: no se crean los DEMO (usa --reset para forzarlos)");
+    return;
+  }
   await db.delete(businesses).where(eq(businesses.source, "seed"));
 
   const now = new Date();

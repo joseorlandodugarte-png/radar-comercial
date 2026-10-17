@@ -44,7 +44,7 @@ function StateGrid({
         <li key={s.id}>
           <Link
             href={`/explorar/${s.slug}`}
-            className={`bg-card hover:bg-accent flex items-center gap-3 rounded-2xl border p-4 transition-colors ${muted ? "opacity-70" : ""}`}
+            className={`bg-card hover:bg-accent flex items-center gap-3 rounded-xl border p-4 transition-colors ${muted ? "opacity-70" : ""}`}
           >
             <span className="bg-accent text-accent-foreground flex size-10 items-center justify-center rounded-xl">
               <MapPinned className="size-5" />

@@ -148,14 +148,18 @@ function Kpi({
 }) {
   const body = (
     <div
-      className={`flex h-full flex-col gap-1 rounded-2xl border p-4 ${accent ? "border-primary/30 bg-primary/5" : "bg-card"}`}
+      className={`hud-frame holo flex h-full flex-col gap-1 rounded-xl border p-4 backdrop-blur-sm ${accent ? "bg-primary text-primary-foreground border-primary" : "bg-card"}`}
     >
-      <span className="text-muted-foreground flex items-center gap-2 text-sm">
-        <Icon className={`size-4 ${accent ? "text-primary" : ""}`} />
+      <span
+        className={`flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] uppercase ${accent ? "opacity-75" : "text-muted-foreground"}`}
+      >
+        <Icon className="size-3.5" />
         {label}
       </span>
-      <span className="text-3xl font-semibold tabular-nums">{value}</span>
-      {hint && <span className="text-muted-foreground text-xs">{hint}</span>}
+      <span className="font-mono text-4xl font-semibold tracking-tight tabular-nums">{value}</span>
+      {hint && (
+        <span className={`text-xs ${accent ? "opacity-75" : "text-muted-foreground"}`}>{hint}</span>
+      )}
     </div>
   );
   return href ? <Link href={href}>{body}</Link> : body;

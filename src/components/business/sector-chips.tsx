@@ -29,7 +29,7 @@ export function SectorChips({ sectors }: { sectors: { sector: string | null; n: 
             className={cn(
               "h-8 shrink-0 rounded-lg px-3 text-sm whitespace-nowrap",
               active
-                ? "bg-primary/10 text-primary font-medium"
+                ? "bg-primary text-primary-foreground font-medium"
                 : "text-muted-foreground hover:bg-accent",
             )}
           >

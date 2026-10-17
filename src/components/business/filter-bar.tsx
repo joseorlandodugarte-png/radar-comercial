@@ -147,7 +147,7 @@ export function FilterBar({
             </SheetTrigger>
             <SheetContent
               side="bottom"
-              className="mx-auto max-w-lg md:top-1/2 md:bottom-auto md:-translate-y-1/2 md:rounded-2xl md:border"
+              className="mx-auto max-w-lg md:top-1/2 md:bottom-auto md:-translate-y-1/2 md:rounded-xl md:border"
             >
               <SheetHeader>
                 <SheetTitle>Filtros</SheetTitle>

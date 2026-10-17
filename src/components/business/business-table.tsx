@@ -16,7 +16,7 @@ import { LEAD_STAGE_LABEL, SERVICE_LABEL } from "@/lib/labels";
 
 export function BusinessTable({ items }: { items: BusinessListItem[] }) {
   return (
-    <div className="bg-card rounded-2xl border">
+    <div className="bg-card hud-frame rounded-xl border backdrop-blur-sm">
       <Table>
         <TableHeader>
           <TableRow>

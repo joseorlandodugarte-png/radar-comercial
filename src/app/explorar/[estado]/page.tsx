@@ -39,7 +39,7 @@ export default async function StatePage({ params }: { params: Promise<{ estado: 
             <li key={m.id}>
               <Link
                 href={`/explorar/${state.slug}/${m.slug}`}
-                className="bg-card hover:bg-accent flex items-center gap-3 rounded-2xl border p-4 transition-colors"
+                className="bg-card hover:bg-accent flex items-center gap-3 rounded-xl border p-4 transition-colors"
               >
                 <span className="min-w-0 flex-1">
                   <span className="block font-medium">{m.name}</span>

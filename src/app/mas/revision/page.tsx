@@ -27,7 +27,7 @@ export default async function ReviewPage() {
           description="Cuando la ingesta de Instagram no pueda medir una cuenta, aparecerá aquí."
         />
       ) : (
-        <ul className="bg-card divide-y rounded-2xl border">
+        <ul className="bg-card hud-frame divide-y rounded-xl border backdrop-blur-sm">
           {queue.map((r) => (
             <li key={r.id} className="flex flex-wrap items-center gap-3 p-4">
               <div className="min-w-0 flex-1">

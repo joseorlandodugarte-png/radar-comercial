@@ -28,7 +28,7 @@ export function ScoreBreakdown({
     (f) => !hideKeys.some((k) => f.key.startsWith(k)),
   );
   return (
-    <details className="group bg-card rounded-2xl border" open>
+    <details className="group bg-card hud-frame rounded-xl border backdrop-blur-sm" open>
       <summary className="flex cursor-pointer list-none items-center gap-4 p-4 [&::-webkit-details-marker]:hidden">
         <ScoreRing value={result?.score ?? null} label="" size={64} variant={variant} />
         <div className="min-w-0 flex-1">
