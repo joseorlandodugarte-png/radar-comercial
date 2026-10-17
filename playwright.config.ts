@@ -8,6 +8,8 @@ const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || undefined;
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: false,
+  // Both projects touch the same lead, so run them one after another.
+  workers: 1,
   retries: process.env.CI ? 1 : 0,
   reporter: [["list"]],
   use: {
