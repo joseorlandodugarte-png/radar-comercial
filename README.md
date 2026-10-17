@@ -10,7 +10,7 @@ Necesitas [Node.js 20+](https://nodejs.org), [pnpm](https://pnpm.io/installation
 
 ```bash
 # 1. Descarga el código
-git clone <url-del-repositorio> radar-comercial && cd radar-comercial
+git clone https://github.com/joseorlandodugarte-png/radar-comercial.git && cd radar-comercial
 
 # 2. Instala las dependencias
 pnpm install
